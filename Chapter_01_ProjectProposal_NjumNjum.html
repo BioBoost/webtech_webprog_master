@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Webtechnology and Webprogramming - Course introduction</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moderno.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+        <link rel="stylesheet" href="css/custom.kulab.nico.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+            <img id="logo" src="assets/Logo_labICT.png" alt="Logo labICT">  
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <section>
+                    <section>
+                        <h1>Webtechnology and Webprogramming</h1>
+                        <h2>Project Proposal</h2>
+                        <h3>"Njum Njum"</h3>
+                        <p><a href="http://labict.be">labict.be</a></p>
+                    </section>
+
+                    <section>
+                        <h2>Project description</h2>
+
+                        <div class="alignleft">
+                            <p>
+                                The client (mister Mustachio Kwestion) wants a web application developed to arrange the meetings with his colleagues for lunch.
+                            </p>
+                            <p>
+                                Every colleague should be able to create a proposal for a meeting (this includes a date, time, place, description, remark, ...).
+                            </p>
+                            <p>
+                                If two proposals were to collide in a given timeframe (for example one week (configurable)) then a voting has to take place in which all colleagues can participate. Once decided which meeting wins, for example count the votes 2 days before the meeting (configurable), that meeting is scheduled.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Project description</h2>
+
+                        <div class="alignleft">
+                            <p>
+                                Colleagues can indicate if they will or will not attend a meeting. Of course they can later still change their mind.
+                            </p>
+                            <p>
+                                Once a colleague has indicated he will attend the meeting, an Outlook calendar meeting request should be sent to the user.
+                            </p>
+                            <p>
+                                The day of the meeting (configurable) all attendees should receive an e-mail to remind them of the meeting.
+                            </p>
+                            <p>
+                                The day before the meeting (configurable) all colleagues that have not yet decided if they will attend the meeting will be send an e-mail.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Project description</h2>
+
+                        <div class="alignleft">
+                            <p>
+                                Colleagues should be able to register themselves by supplying some basic information (name, e-mail, department, username, password, ...). After this an activation link should be sent to the given mail address to enable the account for login.
+                            </p>
+                            <p>
+                                Users should be able to configure if they want to receive e-mails for meetings.
+                            </p>
+                            <p>
+                                Every user should be able to change his/her personal information.
+                            </p>
+                            <p>
+                                User roles have to be included in order to distinguish the normal users from the administrative users.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Project description</h2>
+
+                        <div class="alignleft">
+                            <p>
+                                People that register themselves are always given the normal role. It is the job of an administrator to make another user an administrative user.
+                            </p>
+                            <p>
+                                A history page of past meetings should be available to administrative users.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Project requirements</h2>
+
+                        <div class="alignleft">
+                            <ul>The application should be:
+                                <li>safe and secure.</li>
+                                <li>user friendly and intuitive.</li>
+                                <li>thoroughly tested.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Project essentials</h2>
+
+                        <div class="alignleft">
+                            <p>
+                                Build the web application using state-of-the-art technology.
+                            </p>
+                            <ul>It is mandatory to:
+                                <li>Use an MVC framework</li>
+                                <li>Use a CSS framework</li>
+                                <li>Use Ajax (Asynchronous JavaScript and Xml)</li>
+                                <li>Use a database</li>
+                                <li>Make use of a REST API (for example send tweet when a meeting is scheduled)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Project optionals</h2>
+
+                        <div class="alignleft">
+                            <ul>You can optionally:
+                                <li>Make use of a JavaScript framework</li>
+                                <li>Include Google analytics</li>
+                                <li>Supply a REST interface</li>
+                                <li>Make use of Test Driven Development (TDD)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Agreements</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Weekly appointment + meeting (project status)</li>
+                                <li>Project Management (Redmine)</li>
+                                <li>Project analysis + requirements</li>
+                                <li>The project should be versioned using GIT</li>
+                                <li>Agile development approach (The client may introduce extras later on)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                </section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

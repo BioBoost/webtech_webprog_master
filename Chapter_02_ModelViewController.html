@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Webtechnology and Webprogramming - Model View Controller</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moderno.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+        <link rel="stylesheet" href="css/custom.kulab.nico.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+            <img id="logo" src="assets/Logo_labICT.png" alt="Logo labICT">  
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <section>
+                    <section>
+                        <h1>Webtechnology and Webprogramming</h1>
+                        <h3>Model View Controller</h3>
+                        <p><a href="http://labict.be">labict.be</a></p>
+                    </section>
+
+                    <section>
+                        <h2>What is MVC ? [Gang of four]</h2>
+
+                        <img height="300" src="assets/C02/MVC_Process.png" alt="MVC process">
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Model View Controller (MVC) is a software architecture pattern.</li>
+                                <li>It separates the representation of information from the user's interaction.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>What is MVC ? [Gang of four]</h2>
+                        
+                        <div class="alignleft">
+                            <ul>
+                                <li>MVC consists of three kinds of objects.
+                                    <ul>
+                                        <li>The Model is the application object.</li>
+                                        <li>The View is its screen presentation.</li>
+                                        <li>The Controller defines the way the user interface reacts to user input.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>What is MVC ? [Gang of four]</h2>
+                        
+                        <div class="alignleft">
+                            <ul>
+                                <li>MVC decouples views and models by establishing a subscribe/notify protocol between them.</li>
+                                <li>A view must ensure that its appearance reflects the state of the model. Whenever the model's data changes, the model notifies views that depend on it.</li>
+                                <li>In response, each view gets an opportunity to update itself.</li>
+                                <li>This approach lets you attach multiple views to a model to provide different presentations. You can also create new views for a model without rewriting it.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Controller [Gang of four]</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Accepts user input</li>
+                                <li>Controller is a class consisting of methods (aka. actions) which map to a particular URL</li>
+                                <li>Translation of user input into objects which can be used by the business logic in the model</li>
+                                <li>Passes objects to the view to represent them to the user</li>
+                                <li>Does not contain business logic itself, rather it is a coordinator</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>View [Gang of four]</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>A view is a representation of the model</li>
+                                <li>Data is passed by the controller to the view, which renders the necessary HTML</li>
+                                <li>Templates assist in rendering the required HTML</li>
+                                <li>Some MVC frameworks use a view engine to generate custom templates</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Model [Gang of four]</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Classes which are used to store (persistence) and manipulate state.</li>
+                                <li>Business logic is included in the model as these typically operate on the data, which the models represent (OO encapsulation)</li>
+                                <li>ORM systems can be used to provide persistence and the most important MVC frameworks have an ORM included or provide a binding.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>MVC vs. 3-tier</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Typically 3-tier consists of a "thin" client, "fat business" logic and a data base layer.</li>
+                            </ul>
+                        </div>
+
+                        <img src="assets/C02/3Tier.jpg" alt="3 tier application">
+                    </section>
+
+                    <section>
+                        <h2>MVC vs. 3-tier</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>MVC promotes the use of "thin" controllers, pushing business logic to the model.
+                                    <ul>
+                                        <li>Views should strive to contain mostly HTML</li>
+                                        <li>Controllers should limit their actions as much as possible</li>
+                                        <li>Models should contain the persistence of data and all logic except for view-related logic (markup, representation) and user input</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>MVC frameworks</h2>
+                        <h3>Properties</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Web template system / view engine</li>
+                                <li>Caching</li>
+                                <li>Security
+                                    <ul>
+                                        <li>Authentication, authorization, Cross-Site Scripting libraries, Cross-Site Request Forgery prevention mechanisms</li>
+                                    </ul>
+                                </li>
+                                <li>ORM (Object Relational Mapping)</li>
+                                <li>Scaffolding
+                                    <ul>
+                                        <li>Extensive code generation to create, read, update and delete database entries (for instance combined with an ORM)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>MVC frameworks</h2>
+                        <h3>Properties</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Ajax
+                                    <ul>
+                                        <li>Support for Ajax in the form of client-side templates</li>
+                                    </ul>
+                                </li>
+                                <li>Web services
+                                    <ul>
+                                        <li>Through the uniform interface</li>
+                                        <li>Easy to change the representation from HTML to XML or JSON</li>
+                                    </ul>
+                                </li>
+                                <li>Unit testing
+                                    <ul>
+                                        <li>Integrated unit testing frameworks</li>
+                                        <li>Dependency Injection</li>
+                                        <li>Mocking frameworks</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>MVC frameworks</h2>
+                        <h3>Examples of Server Side MVC frameworks</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>PHP
+                                    <ul>
+                                        <li>CodeIgniter</li>
+                                        <li>CakePHP</li>
+                                        <li>Yii</li>
+                                        <li>FuelPHP</li>
+                                    </ul>
+                                </li>
+                                <li>Ruby on Rails</li>
+                                <li>ASP .NET</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>MVC frameworks</h2>
+                        <h3>Examples of Client Side MVC frameworks</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>JavaScript
+                                    <ul>
+                                        <li>AngularJS</li>
+                                        <li>Backbone.js</li>
+                                        <li>Ember.js</li>
+                                        <li>...</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                </section>
+                    
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
