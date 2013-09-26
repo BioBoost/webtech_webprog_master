@@ -47,6 +47,870 @@
                         <p><a href="http://labict.be">labict.be</a></p>
                     </section>
 
+                    <section>
+                        <h2>Overview</h2>
+
+                        <div class="alignleft">
+                        	<ul>
+                        		<li>What is Git</li>
+                        		<li>Installing and configuring Git</li>
+                        		<li>Basic Git</li>
+                        		<!-- <li>Git remotes</li> -->
+                        		<!-- <li>Advanced Git</li> -->
+                        	</ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                    	<h2>What is Git</h2>
+                    	<img height="200" src="assets/C04/GitLogo.jpg" alt="Logo of Git">
+                    </section>
+
+                    <section>
+                    	<h2>Git</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>English slang for a stupid or unpleasant person.</li>
+                    			<li>Initially designed and developed by Linus Torvalds for Linux kernel development in 2005.</li>
+                    			<li>Revision Control
+                    				<ul>
+                    					<li>Management of changes in documents</li>
+                    					<li>Trunks, Branches and Tags</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                    <section>
+                    	<h2>Git</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Source Code Management
+                    				<ul>
+                    					<li>Management of changes in documents</li>
+                    					<li>Trunks, Branches and Tags</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    	<img height="400" src="assets/C04/GitSourceCodeManagement.png" alt="Git Example">
+                    </section>
+
+                    <section>
+                    	<h2>Git</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Distributed
+	                    			<ul>
+	                    				<li>Every Git working directory is a full-fledged repository with complete history and full version tracking capabilities</li>
+	                    				<li>Not dependent on network access or a central server.</li>
+	                    			</ul>
+                    			</li>
+                    			<li>Fast</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                    	<h2>Installing and configuring Git</h2>
+                    	<img height="200" src="assets/C04/GitLogo.jpg" alt="Logo of Git">
+                    </section>
+
+                    <section>
+                    	<h2>Installing Git</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Download Git binary from <a href="http://git-scm.com">http://git-scm.com</a></li>
+                    			<li>On windows choose "Run Git and include Linux tools from the Windows command Prompt" during installation</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                    <section>
+                    	<h2>Configuring Git</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Configuring your identity in Git</li>
+                    		</ul>
+                    	</div>
+
+                        <pre class="wrap"><code data-trim>
+$ git config --global user.name = &quot;Lorem Ipsum&quot;
+$ git config --global user.email = &quot;lorem@ipsum.be&quot;
+$ git config --global core.editor &quot;'C:\Program Files\Sublime Text 3\sublime_text.exe'&quot;
+                        </code></pre>
+
+                        <p>This can also be done for a single repository by omitting <code>--global</code>.</p>
+
+	                   	<div class="alignleft">
+                    		<ul>
+                    			<li>Enable colors</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git config --global color.ui true
+                        </code></pre>
+
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                    	<h2>Basic Git</h2>
+                    	<img height="200" src="assets/C04/GitLogo.jpg" alt="Logo of Git">
+                    </section>
+
+                    <section>
+                    	<h2>Commandline tool</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Git is primarily used as commandline tool</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git &lt;command&gt;
+                        </code></pre>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Bells and whistles for PowerShell: posh-git
+                    				<ul>
+                    					<li><a href="https://github.com/dahlbyk/posh-git">https://github.com/dahlbyk/posh-git</a></li>
+                    				</ul>
+                    			</li>
+                    			<li>Visual Front Ends are also available
+                    				<ul>
+                    					<li>Github for windows</li>
+                    					<li>TortoiseGit</li>
+                    					<li>Git GUI (gitk, git-gui)</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                    <section>
+                    	<h2>Commandline tool</h2>
+
+                    	<img height="300" src="assets/C04/OldTerminal.jpg" alt="Old Terminal">
+
+                    	<p>We will be using the command line !</p>
+                    </section>
+
+                    <section>
+                    	<h2>Creating a repository</h2>
+
+                        <pre><code data-trim>
+D:\demo\git&gt; git init
+Initialized empty Git repository in D:/demo/git/.git/
+                        </code></pre>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Creates a .git folder inside your project</li>
+                    			<li>All information is stored in this .git folder
+                    				<ul>
+                    					<li>Commit messages</li>
+                    					<li>Config</li>
+                    					<li>Objects</li>
+                    					<li>Refs</li>
+                    					<li>...</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                    <section>
+                    	<h2>Status of the repository</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Git knows when files are changed in the repository</li>
+                    			<li>Shows the current files in the <strong>working directory</strong> with the history
+                    				<ul>
+                    					<li>Commit messages</li>
+                    					<li>Config</li>
+                    					<li>Objects</li>
+                    					<li>...</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+D:\demo\git [master]&gt; touch file.txt
+
+D:\demo\git [master +1 ~0 -0 !]&gt; git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+#
+#       file.txt
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+                        </code></pre>
+
+                    </section>
+
+                    <section>
+                    	<h2>Staging and commiting files</h2>
+
+                    	<p class="alignleft">Before we are able to track files we need to add them to the repository. This is a two step process.</p>
+
+                    	<div class="alignleft">
+                    		<ol>
+                    			<li>Staging
+                    				<ul>
+                    					<li>Preparing for a commit by adding them to the staging area (the index)</li>
+                    				</ul>
+                    			</li>
+                    		</ol>
+                    	</div>
+
+                        <pre><code data-trim>
+D:\demo\git [master +1 ~0 -0 !]&gt; git add file.txt
+                        </code></pre>
+
+                    </section>
+
+                    <section>
+                    	<h2>Staging and commiting files</h2>
+
+                    	<div class="alignleft">
+                    		<ol start="2">
+                    			<li>Commiting
+                    				<ul>
+                    					<li>Actually saving the changes to the repository</li>
+                    				</ul>
+                    			</li>
+                    		</ol>
+                    	</div>
+
+                        <pre><code data-trim>
+D:\demo\git [master +1 ~0 -0]&gt; git commit -m &quot;Added new file.txt&quot;
+[master (root-commit) 640e020] Added new file.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file.txt
+                        </code></pre>
+
+                    </section>
+
+                    <section>
+                    	<h2>Staging and commiting files</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>The current version of file.txt is now saved in the history of the repository.</li>
+                    			<li>Every commit needs a message
+                    				<ul>
+                    					<li>Short explanation of the changes</li>
+                    				</ul>
+                    			</li>
+                    			<li>The commit is identified as 640e020
+                    				<ul>
+                    					<li>You can always come back to this version</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                    </section>
+
+                    <section>
+                    	<h2>Example</h2>
+
+                        <pre><code data-trim>
+D:\demo\git [master]&gt; touch hello.txt
+D:\demo\git [master +1 ~0 -0 !]&gt; echo &quot;Lorem ipsum&quot; &gt;&gt; .\file.txt
+D:\demo\git [master +1 ~1 -0 !]&gt; git add hello.txt
+D:\demo\git [master +1 ~0 -0 | +0 ~1 -0]&gt; git status
+# On branch master
+# Changes to be committed:
+#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+#       new file:   hello.txt
+#
+# Changes not staged for commit:
+#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+#
+#       modified:   file.txt
+#
+                        </code></pre>
+
+                    </section>
+
+                    <section>
+                    	<h2>Git File Status Life Cycle</h2>
+
+                    	<img height="500" src="assets/C04/GitFileStatusLifecycle.png" alt="Git File Status Life Cycle">
+                    </section>
+
+                    <section>
+                    	<h2>What to commit ?</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Commit only per set of change
+                    				<ul>
+                    					<li>1 commit per feature/bug/update/refactoring</li>
+                    					<li>Use <code>$ git add –p</code> and decide per code line (patch) if you want to add it to the staging area</li>
+                    				</ul>
+                    			</li>
+                    			<li>The commit is identified as 640e020
+                    				<ul>
+                    					<li>You can always come back to this version</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                    </section>
+
+                    <section>
+                    	<h2>Adding and resetting</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Add all files in current directory at once
+                    				<ul>
+                    					<li><code>$ git add .</code></li>
+                    				</ul>
+                    			</li>
+                    			<li>Add all files with filename filter
+                    				<ul>
+                    					<li><code>$ git add *.cpp</code></li>
+                    				</ul>
+                    			</li>
+                    			<li>Add a subfolder
+                    				<ul>
+                    					<li><code>$ git add subfolder/</code></li>
+                    				</ul>
+                    			</li>
+                    			<li>Removing tracked file from the staging area
+                    				<ul>
+                    					<li><code>$ git reset file.txt</code></li>
+                    				</ul>
+                    			</li>
+                    			<li>Reset your working copy to the latest committed state (undo all changes to tracked files)
+                    				<ul>
+                    					<li><code>$ git reset --hard</code></li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                    </section>
+
+                    <section>
+                    	<h2>Adding and resetting</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Reset your working copy of a single tracked file
+                    				<ul>
+                    					<li><code>$ git checkout file.txt</code></li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                    </section>
+
+                    <section>
+                    	<h2>Removing files</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Remove a file from the repository
+                    				<ul>
+                    					<li><code>$ git rm file.txt</code></li>
+                    					<li>Removing the file from the working directory won't remove the file in te repository. You must use the <code>git rm</code> command.</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                    <section>
+                    	<h2>Reviewing changes</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Reviewing changes to a file
+                    				<ul>
+                    					<li><code>$ git  diff file.txt</code></li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+D:\demo\git [master +0 ~0 -1 | +0 ~1 -0]&gt; git diff hello.txt
+diff --git a/hello.txt b/hello.txt
+index 9cefbcb..6e79f67 100644
+--- a/hello.txt
++++ b/hello.txt
+@@ -1 +1 @@
+-hallo dit is een test
+\ No newline at end of file
++hallo dit is een verandering
+\ No newline at end of file
+                        </code></pre>
+                    </section>
+
+                    <section>
+                    	<h2>Reviewing history</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Reviewing git history
+                    				<ul>
+                    					<li><code>$ git log</code></li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+D:\demo\git [master +0 ~0 -1 | +0 ~1 -0]&gt; git log
+commit 4d887f0e6fafa2f4300dc7593795b4e7a16bc10c
+Author: Sille Van Landschoot &lt;info@sillevl.be&gt;
+Date:   Mon Sep 16 20:25:24 2013 +0200
+
+    changed text in file
+
+commit 640e0209bc51fc93dd18b5d1a9c9ec1a8376de2a
+Author: Sille Van Landschoot &lt;info@sillevl.be&gt;
+Date:   Mon Sep 16 17:14:16 2013 +0200
+
+    Added new empty file.txt
+                        </code></pre>
+                    </section>
+
+                    <section>
+                    	<h2>Reviewing history</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Show history on one line
+                    				<ul>
+                    					<li><code>$ git log</code></li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+D:\demo\git [master +0 ~0 -1 | +0 ~1 -0]&gt; git log --oneline
+4d887f0 changed text in file
+640e020 Added new empty file.txt
+                        </code></pre>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                    	<h2>Branching</h2>
+                    	<img height="200" src="assets/C04/GitLogo.jpg" alt="Logo of Git">
+                    </section>
+
+                    <section>
+                    	<h2>Branching</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>The entire history can be visualized as a timeline</li>
+                    		</ul>
+                    	</div>
+
+                    	<img height="80" src="assets/C04/GitTimeline.png" alt="Timeline of a git branch">
+
+                    	<div class="alignleft">
+                    		<ul>
+								<li>A timeline is also called a branch
+									<ul>
+										<li>Multiple branches can exist in one project</li>
+										<li>By default git adds the history to the master branch</li>
+									</ul>
+								</li>
+                    		</ul>
+                    	</div>
+                    	<img height="150" src="assets/C04/GitTimelineWithMaster.png" alt="Timeline of git master branch">
+                    </section>
+
+                    <section>
+                    	<h2>Branching</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>You can add your own branch with the <code>git branch</code> command</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git branch testing
+                        </code></pre>
+
+                    	<img height="250" src="assets/C04/GitTimelineWithTesting.png" alt="Timeline of git master and testing branch">
+                    </section>
+
+                    <section>
+                    	<h2>When to branch ?</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Do every new experiment/feature/bug/... in a new branch
+                    				<ul>
+		                    			<li>This way you will never break your working code base</li>
+		                    			<li>If you ruin your project, just checkout a working revision, branch or tag.</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                    <section>
+                    	<h2>The HEAD</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>The HEAD is a pointer that points to the current checked out commit</li>
+                    			<li>The HEAD is a symbolic reference to the branch you're currently on.</li>
+                    		</ul>
+                    	</div>
+
+                    	<img height="350" src="assets/C04/GitTimelineWithHEAD.png" alt="The git HEAD">
+                    </section>
+
+                    <section>
+                    	<h2>Moving the HEAD</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>With the checkout command we can move the HEAD.</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git checkout testing
+                        </code></pre>
+
+                    	<img height="350" src="assets/C04/GitTimelineWithHEADAtTesting.png" alt="The git HEAD pointing at testing branch">
+                    </section>
+
+                    <section>
+                    	<h2>Committing on the testing branch</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Adds a new revision (C5) to the history</li>
+                    			<li>'testing' and HEAD are pointing to the new revision (C5)</li>
+                    			<li>Changes are added to the active branch
+                    				<ul>
+                    					<li>Only 1 branch can be <strong>active</strong> at any given time</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    	
+                    	<img height="300" src="assets/C04/GitTimelineWithCommitToTesting.png" alt="The git HEAD pointing new commit of testing branch">
+                    </section>
+
+                    <section>
+                    	<h2>Back to the master</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Changing back to the master branch
+                    				<ul>
+                    					<li>The current working copy is moved back to the last state of master</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    	
+                        <pre><code data-trim>
+$ git checkout master
+                        </code></pre>
+
+                    	<img height="300" src="assets/C04/GitTimelineWithCommitToTestingBackToMaster.png" alt="The git HEAD pointing back to the master branch">
+                    </section>
+
+                    <section>
+                    	<h2>Committing on the master branch</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Make a new commit on the master branch
+                    				<ul>
+                    					<li>Testing branch is unaffected</li>
+                    					<li>Branches exist next to each other</li>
+                    					<li>Each branch has it's own history</li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    	
+                    	<img height="300" src="assets/C04/GitTimelineWithCommitMaster.png" alt="Commiting to the master branch">
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                    	<h2>Merging</h2>
+                    	<img height="200" src="assets/C04/GitLogo.jpg" alt="Logo of Git">
+                    </section>
+
+                    <section>
+                    	<h2>Before Merging</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Combine the changes from another branch in your current branch</li>
+                    			<li><code>git merge command</code></li>
+                    			<li>You always merge <strong>into</strong> your current checked out branch</li>
+                    		</ul>
+                    	</div>
+
+                    </section>
+
+                    <section>
+                    	<h2>Before Merging</h2>
+
+                        <pre><code data-trim>
+$ git checkout iss53 
+Switched to branch &quot;iss53&quot; 
+$ vim index.html 
+$ git commit -a -m 'finished the new footer [issue 53]' 
+[iss53]: created ad82d7a: &quot;finished the new footer [issue 53]&#x201c;
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+                        </code></pre>
+
+                    	<img height="300" src="assets/C04/GitTimelineBeforeMerge.png" alt="ISS53 branch before merge">
+                    </section>
+
+                    <section>
+                    	<h2>Merging</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Merge a branch into your current branch</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git checkout master 
+$ git merge iss53 
+Merge made by recursive. 
+README | 1 + 1 files changed, 
+ 1 insertions(+), 0 deletions(-)
+                        </code></pre>
+
+                    	<img height="300" src="assets/C04/GitTimelineAfterMerge.png" alt="ISS53 branch after merge">
+                    </section>
+
+                    <section>
+                    	<h2>After Merging</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>You can delete the branch after merging</li>
+                    			<li>Git will warn you if you didn't merge the branch first</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git branch -d iss53
+                        </code></pre>
+                    </section>
+
+                    <section>
+                    	<h2>Some more merging commands</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Listing all branches
+                    				<ul>
+                    					<li><code>$ git branch</code></li>
+                    				</ul>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    </section>
+
+                    <section>
+                    	<h2>Merging conflicts</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>When merging, problems can occur
+                    				<ul>
+                    					<li>e.g. the same line of code has been edited</li>
+                    					<li>When a merge conflict occurs, the merge will fail</li>
+                    					<li>Manual selection of which version to keep is needed</li>
+                    				</ul>
+                    			</li>
+                    			<li>Solution:
+                    				<ul>
+                    					<li>Fix the problem and commit your changes !</li>
+                    				</ul>
+                    			</li>                    			
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git merge iss53 
+Auto-merging index.html 
+CONFLICT (content): Merge conflict in index.html 
+Automatic merge failed; fix conflicts and then commit the result.
+                        </code></pre>
+                    </section>
+
+                    <section>
+                    	<h2>Merging conflicts</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Git status will show merging conflicts</li>                    			
+                    		</ul>
+                    	</div>
+
+                        <pre class="wrap"><code data-trim>
+[master*]$ git status 
+index.html: needs merge
+# On branch master 
+# Changes not staged for commit: 
+# (use &quot;git add &lt;file&gt;...&quot; to update what will be committed) 
+# (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory) 
+# 
+# unmerged: index.html 
+#
+                        </code></pre>
+                    </section>
+
+                    <section>
+                    	<h2>Merging conflicts</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>If a merge fails, the file will contain both versions</li>
+                    			<li>You can manually edit the file for the correct version</li>	
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html 
+&lt;div id=&quot;footer&quot;&gt;contact : email.support@github.com&lt;/div&gt; 
+======= 
+&lt;div id=&quot;footer&quot;&gt; 
+please contact us at support@github.com 
+&lt;/div&gt; 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; iss53:index.html
+                        </code></pre>
+                    </section>
+
+                    <section>
+                    	<h2>Merging conflicts</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Checkout the correct version
+                    				<ul>
+                    					<li>Choose version from HEAD</li>
+                    				</ul>
+								</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git checkout --ours conflictedfile
+                        </code></pre>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>
+                    				<ul>
+                    					<li>Choose version from otherbranch</li>
+                    				</ul>
+								</li>
+                    		</ul>
+                    	</div>
+
+                        <pre><code data-trim>
+$ git checkout --theirs conflictedfile
+                        </code></pre>
+                    </section>
+
+                    <section>
+                    	<h2>Merging conflicts</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Or you use an mergtool for choosing the correct version in a merge conflict</li>
+                    		</ul>
+                    	</div>
+
+                        <pre class="wrap"><code data-trim>
+$ git mergetool 
+merge tool candidates: kdiff3 tkdiff xxdiff meld gvimdiff opendiff emerge vimdiff 
+Merging the files: index.html 
+
+Normal merge conflict for 'index.html': 
+	{local}: modified 
+	{remote}: modified 
+Hit return to start merge resolution tool (opendiff):
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                    	<h2>Remotes</h2>
+                    	<img height="200" src="assets/C04/GitLogo.jpg" alt="Logo of Git">
+                    </section>
+
+                    <section>
+                    	<h2>Cloning a repository</h2>
+
+                    	<div class="alignleft">
+                    		<ul>
+                    			<li>Making a local clone of the git repository</li>
+                    			<li>Total history is cloned as wel</li>
+                    		</ul>
+                    	</div>
+
+                        <pre class="wrap"><code data-trim>
+git clone git@github.com:whatever
+                        </code></pre>
+                    </section>
+
+                </section>
+
+                <section>
+                	<h2>Would you like to know more ?</h2>
+                	<img height="300" src="assets/C04/WouldYouLikeToKnowMore.jpg" alt="Would you like to know more">
+                	<p><a href="http://git-scm.com/book/">http://git-scm.com/book/</a></p>
                 </section>
                     
 			</div>
