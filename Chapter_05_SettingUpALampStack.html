@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Webtechnology and Webprogramming - Setting up a LAMPP stack</title>
+		<title>Webtechnology and Webprogramming - Setting up a LAMP stack</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -43,7 +43,7 @@
                 <section>
                     <section>
                         <h1>Webtechnology and Webprogramming</h1>
-                        <h3>Setting up a LAMPP stack</h3>
+                        <h3>Setting up a LAMP stack</h3>
                         <p><a href="http://labict.be">labict.be</a></p>
                     </section>
                 </section>
@@ -293,20 +293,336 @@ sudo chown -R nico:nico /home/nico/.ssh
 sudo chmod -R 0700 /home/nico/.ssh
                         </code></pre>
                     </section>
+                </section> 
 
+                <section>
+                    <section>
+                        <h2>Installing and configuring Apache</h2>
+                    </section>
 
+                    <section>
+                        <h3>Installing apache</h3>
 
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install apache and php using apt-get</li>
+                            </ul>
+                        </div>
 
+                        <pre><code data-trim>
+sudo apt-get install apache2 php5 libapache2-mod-php5
+                        </code></pre>
 
+                        <div class="alignleft">
+                            <ul>
+                                <li>You should now have a directory /var/www</li>
+                                <li>Surf to your domain name or ip address and check if the site is online</li>
+                            </ul>
+                        </div>
+                    </section>
 
+                    <section>
+                        <h3>Need to knows</h3>
 
+                        <div class="alignleft">
+                            <ul>
+                                <li>You can restart apache using the following command if ever needed</li>
+                            </ul>
+                        </div>
 
+                        <pre><code data-trim>
+sudo service apache2 restart
+                        </code></pre>
 
+                        <div class="alignleft">
+                            <ul>
+                                <li>The PHP config file can be found as /etc/php5/apache2/php.ini</li>
+                                <li>Main apache config, sites-available and sites-enabled can be found in /etc/apache2/</li>
+                            </ul>
+                        </div>
+                    </section>
 
+                    <section>
+                        <h3>Configure Apache Rewrite</h3>
 
+                        <div class="alignleft">
+                            <ul>
+                                <li>Make sure that apacha is allowing .htaccess files to override permissions by changing the line 'AllowOverride None' to 'AllowOverride All'</li>
+                            </ul>
+                        </div>
 
-                </section>
+                        <pre><code data-trim>
+sudo nano /etc/apache2/sites-available/default
+                        </code></pre>
+
+                        <pre><code data-trim>
+&lt;Directory /var/www/&gt;
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+&lt;/Directory&gt;
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Restart the apache service </li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo service apache2 restart
+                        </code></pre>
+                    </section>
                     
+                    <section>
+                        <h3>Adding system accounts to the www-data group</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>This allows the users to cd into the /var/www dirs</li>
+                                <li>Add nico to the www-data group</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo usermod -a -G www-data nico
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Display the groups a user is assigned to</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+id nico
+                        </code></pre>
+                    </section>
+                    
+                    <section>
+                        <h3>Setting up MySql</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install MySQL server</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo apt-get install mysql-server mysql-client php5-mysql
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Enter a root password when requested</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h3>Setting up PhpMyAdmin</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install PhpMyAdmin using apt-get</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo apt-get install phpmyadmin
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Select apache2 when asked
+                                    <ul>
+                                        <li>The first password that needs to be provided is the root password of the database.</li>
+                                        <li>The second password is the password that is attached to the phpmyadmin user account.</li>
+                                    </ul>
+                                </li>
+                                <li>Select to configure database. If you miss you can restart config using <code>sudo dpkg-reconfigure phpmyadmin</code></li>
+                                <li>You should now be able to access phpmyadmin via http://&lt;server-ip-address/phpmyadmin</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Firewall rules</h2>
+                    </section>
+
+                    <section>
+                        <h3>Install Uncomplicated Firewall</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install ufw using apt-get</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo apt-get install ufw
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Allow SSH and HTTP</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Configure ufw to allow ssh and http access</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo ufw allow ssh
+sudo ufw allow http
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Activate UFW</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Enable the firewall</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo ufw enable
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Mail Server</h2>
+                    </section>
+
+                    <section>
+                        <h3>Setting up postfix for sending of emails</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install postfix using apt-get</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo apt-get install postfix
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Pick the "Internet site" configuration</li>
+                                <li>Configure the system mail name as "webtech.be" (without the quotes)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Further configuration of the postfix</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Open the postfix configuration file</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo nano /etc/postfix/main.cf
+                        </code></pre>
+
+                        <pre><code data-trim>
+myhostname = xionix
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+myorigin = /etc/mailname
+# No local delivery
+mydestination =
+# Send all mail to xionix.be relay host (live domain in our case)
+relayhost = xionix.be
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+                        </code></pre>
+                        
+                    </section>
+
+                    <section>
+                        <h3>Test your setup</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Make sure you can telnet to the localhost on port 25</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+telnet localhost 25
+                        </code></pre>
+                        
+                    </section>
+
+                    <section>
+                        <h3>Test your setup</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install a CLI mail client</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo apt-get install mailutils
+                        </code></pre>
+                        
+                    </section>
+
+                    <section>
+                        <h3>Test your setup</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>You can send mail using the following command</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+echo &quot;MESSAGE&quot; | mail -s &quot;SUBJECT&quot; &lt;email_address&gt;
+                        </code></pre>
+                        
+                    </section>
+
+                    <section>
+                        <h3>Attachments</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>If you want to send attachments you need uuencode (part of sharutils)</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo apt-get install sharutilst
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Sending mail with attachments (you need to specify the filename twice!)</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+uuencode &lt;attachedfile&gt; &lt;attachedfile&gt; | mail -s &quot;My Attachment&quot; -- nico@webtech.be
+                        </code></pre>
+                        
+                    </section>
+                </section>
 			</div>
 
 		</div>
