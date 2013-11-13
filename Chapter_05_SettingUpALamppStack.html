@@ -47,6 +47,265 @@
                         <p><a href="http://labict.be">labict.be</a></p>
                     </section>
                 </section>
+
+                <section>
+                    <section>
+                        <h2>Basic Server Setup</h2>
+                    </section>
+
+                    <section>
+                        <h3>Configuring the hostname</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Note that the system's hostname has no relationship to websites or email services hosted on it, aside from providing a name for the system itself</li>
+                                <li>Your hostname should not be "www" or anything too generic.</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+echo &quot;webtech&quot; &gt; /etc/hostname
+hostname -F /etc/hostname
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Configuring the hostname</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Update the host file to reflect new hostname</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+nano /etc/hosts
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Add the following lines to the files</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+127.0.0.1   webtech
+127.0.0.1   webtech.be
+127.0.0.1   webtech.org
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Update list of software packages</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Update list of software packages (updates the list of available packages and their versions)</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+apt-get update
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Upgrade currently installed packages</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Upgrade currently installed packages</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+apt-get upgrade
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Configuring the server timezone</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Configuring the server timezone</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+dpkg-reconfigure tzdata
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Enable open SSH server</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Enable open SSH server</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+tasksel
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>User accounts</h2>
+                    </section>
+
+                    <section>
+                        <h3>Adding a system admin user</h3>
+
+                        <pre><code data-trim>
+useradd -r -m -s /bin/bash nico
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>-r to create system account (no expire)</li>
+                                <li>-m to create home dir</li>
+                                <li>-s specify bash as shell</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Password</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Set the password for the accounts (without password user account will be in locked status)</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+passwd nico
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Sudoer</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Add user to sudo users</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+usermod -a -G sudo nico
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Locking root</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Make sure to login as system user (nico)</li>
+                                <li>Now we lock the root account so it cant be used for logging in</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo usermod -L root
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>From now on you should always login using one of the admin accounts</li>
+                                <li>The root account can be reenabled (if ever needed) by setting a password using <code>passwd root</code></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Configuring SSH to use key-pair authentication</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Generate user keys (Windows or host machine) if you dont already have one or want to create a seperate one for this machine</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+cd ~/.ssh
+ssh-keygen -t rsa
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Configuring SSH to use key-pair authentication</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Copy the public key to the server</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+scp id_rsa.pub nico@&lt;ip-address&gt;:/tmp/id_rsa.pub
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Watch out with windows tab completion !
+                                    <ul>
+                                        <li>&quot;id_rsa.pub&quot; may be changed to &quot;./id_rsa.pub&quot; which is literally used as the filename.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Configuring SSH to use key-pair authentication</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Create a .ssh dir for the user (here nico as example) if none exists yet</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+mkdir /home/nico/.ssh
+chmod 0700 /home/nico/.ssh
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Configuring SSH to use key-pair authentication</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Add the key to the authorized keys on the server</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo cat /tmp/id_rsa.pub >> /home/nico/.ssh/authorized_keys
+sudo rm /tmp/id_rsa.pub
+sudo chown -R nico:nico /home/nico/.ssh
+sudo chmod -R 0700 /home/nico/.ssh
+                        </code></pre>
+                    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+                </section>
                     
 			</div>
 
