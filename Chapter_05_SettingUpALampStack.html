@@ -58,6 +58,7 @@
 
                         <div class="alignleft">
                             <ul>
+                                <li>Setting a hostname allows for easy identification when logged in.</li>
                                 <li>Note that the system's hostname has no relationship to websites or email services hosted on it, aside from providing a name for the system itself</li>
                                 <li>Your hostname should not be "www" or anything too generic.</li>
                             </ul>
@@ -67,6 +68,12 @@
 echo &quot;webtech&quot; &gt; /etc/hostname
 hostname -F /etc/hostname
                         </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>When logging out and back in your shell should reflect the changed hostname</li>
+                            </ul>
+                        </div>
                     </section>
 
                     <section>
@@ -114,12 +121,23 @@ apt-get update
 
                         <div class="alignleft">
                             <ul>
-                                <li>Upgrade currently installed packages</li>
+                                <li>Upgrade currently installed packages with the newest versions available</li>
                             </ul>
                         </div>
 
                         <pre><code data-trim>
 apt-get upgrade
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Or you can also use dist-upgrade to carry out a more intelligent upgrade</li>
+                                <li>Basically upgrade will only upgrade existing packages from one version to another. It will not install or remove packages, even if doing so is required to upgrade others.</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+apt-get dist-upgrade
                         </code></pre>
                     </section>
 
@@ -149,6 +167,12 @@ dpkg-reconfigure tzdata
                         <pre><code data-trim>
 tasksel
                         </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Select OpenSSH server</li>
+                            </ul>
+                        </div>
                     </section>
                 </section>
 
