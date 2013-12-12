@@ -74,3 +74,15 @@
     margin: 5px;
     white-space: nowrap;
 }
+
+.table  {
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    padding: 20px;
+}
+
+.table th {
+    font-size: 1em;

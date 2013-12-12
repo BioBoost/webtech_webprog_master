@@ -610,6 +610,350 @@ sudo apt-get install phpmyadmin
 
                 <section>
                     <section>
+                        <h2>Installing and configuring GIT</h2>
+
+                        <div>
+                            <img src="assets/C05/GIT.png" height="200" alt="Logo of GIT">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Installing GIT</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install git using apt-get</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo apt-get install git-core git
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Adding a GIT user</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Add a GIT user and set a password</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo useradd -r -m -s /bin/bash git
+sudo passwd git
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Creating repositories</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Create a new git repository in the home dir of the git user</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo su git
+cd ~
+mkdir -p repositories/myfirstgitrepo.git
+cd repositories/myfirstgitrepo.git
+git --bare init
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>You should get the message <code>&quot;Initialized empty Git repository in ...&quot;</code></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Cloning your new repository</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Clone the new repository on your client machine</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+git clone git@&lt;ip-address&gt;:repositories/myfirstgitrepo.git
+                        </code></pre>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Website deployment using GIT</h2>
+                    </section>
+
+                    <section>
+                        <h3>Creating a deployment directory</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Start by creating a new directory in <code>/var/www</code></li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+cd /var/www
+sudo mkdir mynewsite
+sudo chown git:www-data mynewsite
+sudo chmod 750 mynewsite
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Creating a deployment hook</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Start by logging in with the user git</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo su git
+cd ~/repositories/myfirstgitrepo.git
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Copy the sample <code>post-update.sample</code> hook</li>
+                                <li>Make sure to name the new file <strong>post-update</strong></li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+cd hooks
+cp post-update.sample post-update
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Creating a deployment hook</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Edit the <strong>post-update</strong> hook using nano</li>
+                                <li>Do a checkout action of the git repository to your deployment directory</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+#!/bin/sh
+echo "... Deploying your web application ..."
+# Hook specific code
+umask 0027 &amp;&amp; GIT_WORK_TREE=/var/www/mynewsite git checkout -f
+echo "... Done deploying ..."
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Linux umask</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>When a user creates a file or directory under Linux, it is created with a default set of permissions</li>
+                                <li>The user file-creation mode mask (umask) is used to determine the file permission for newly created files</li>
+                                <li>Default files are created with the access mode 666 and directories with 777</li>
+                                <li>The default umask 002 used for normal user</li>
+                                <li>The default umask for the root user is 022</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Linux umask</h3>
+
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Normal User</th>
+                                        <th>Root</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>File</th>
+                                        <td>
+                    <pre>
+ 666
+-002
+ 664 = rw-rw-r--
+                    </pre>
+                                        </td>
+                                        <td>
+                    <pre>
+ 666
+-022
+ 644 = rw-r--r--
+                    </pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Directory</th>
+                                        <td>
+                    <pre>
+ 777
+-002
+ 775 = rwxrwxr-x
+                    </pre>
+                                        </td>
+                                        <td>
+                    <pre>
+ 777
+-022
+ 755 = rwxr-xr-x
+                    </pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Looking back at our hook</h3>
+
+                        <pre><code data-trim>
+umask 0027 &amp;&amp; GIT_WORK_TREE=/var/www/mynewsite git checkout -f
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>This is executed in context of the GIT user
+                                    <ul>
+                                        <li>So for files: 666 - 027 = 640 = rw-r-----</li>
+                                        <li>And for dirs: 777 - 027 = 750 = rwxr-x---</li>
+                                    </ul>
+                                </li>
+                                <li>So the <code>git</code> user has all rights and the <code>git</code> group has only read rights. Nobody else can view the files or traverse the dirs.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Let's test it</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Add and commit an <code>index.html</code> file in the git repository</li>
+                                <li>Push the repository</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+git add index.html
+git commit -m "Added index file"
+git push origin master
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Let's test it</h3>
+
+                        <div>
+                            <img height="400" src="assets/C05/Forbidden.png" alt="Access to site is forbidden">
+                        </div>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Ow but wait, what about the <code>www-data</code> user ? How can the webserver access these files ?</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Allow apache to access the deployed site</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>We could add the <code>www-data</code> user to the <code>git</code> group but this is a security risk</li>
+                                <li>We could do a <code>chown</code> inside the hook code but git does not have the rights and this would break existing sites and permissions</li>
+                                <li>Solution: set the s-bit on the initial drop directory for the group
+                                    <ul>
+                                        <li>This makes sure that the group is set to <code>www-data</code> of all new files and dirs</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Allow apache to access the deployed site</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Remove all the content inside the drop directory</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+cd /var/www/mynewsite/
+rm index.html
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Set the s-bit of the drop dir</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+cd ..
+sudo chmod g+s mynewsite
+ls -al
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Let's test it</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Add and commit a change to the <code>index.html</code> file</li>
+                                <li>Push the repository</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+git add index.html
+git commit -m "Added index file"
+git push origin master
+                        </code></pre>
+
+                        <div>
+                            <img height="300" src="assets/C05/HelloWorld.png" alt="Access to site is working">
+                        </div>
+                    </section>
+                </section>
+
+                    <section>
+                        <h3>Check the permissions</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Check the permissions of the files on the server</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+cd /var/www/mynewsite
+ls -al
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
                         <h2>Firewall rules</h2>
                     </section>
 
