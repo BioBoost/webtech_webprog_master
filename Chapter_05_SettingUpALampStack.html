@@ -35,7 +35,7 @@
 	<body>
 
 		<div class="reveal">
-            <img id="logo" src="assets/Logo_labICT.png" alt="Logo labICT">  
+            <img id="logo" src="assets/Logo_labICT.png" alt="Logo labICT">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
@@ -446,6 +446,10 @@ sudo chmod -R 0700 /home/nico/.ssh
                 <section>
                     <section>
                         <h2>Installing and configuring Apache</h2>
+
+                        <div>
+                            <img src="assets/C05/Apache.jpg" height="300" alt="Apache logo">
+                        </div>
                     </section>
 
                     <section>
@@ -463,7 +467,7 @@ sudo apt-get install apache2 php5 libapache2-mod-php5
 
                         <div class="alignleft">
                             <ul>
-                                <li>You should now have a directory /var/www</li>
+                                <li>You should now have a directory <code>/var/www</code></li>
                                 <li>Surf to your domain name or ip address and check if the site is online</li>
                             </ul>
                         </div>
@@ -484,8 +488,8 @@ sudo service apache2 restart
 
                         <div class="alignleft">
                             <ul>
-                                <li>The PHP config file can be found as /etc/php5/apache2/php.ini</li>
-                                <li>Main apache config, sites-available and sites-enabled can be found in /etc/apache2/</li>
+                                <li>The PHP config file can be found as <code>/etc/php5/apache2/php.ini</code></li>
+                                <li>Main apache config, sites-available and sites-enabled can be found in <code>/etc/apache2/</code></li>
                             </ul>
                         </div>
                     </section>
@@ -495,7 +499,7 @@ sudo service apache2 restart
 
                         <div class="alignleft">
                             <ul>
-                                <li>Make sure that apacha is allowing .htaccess files to override permissions by changing the line 'AllowOverride None' to 'AllowOverride All'</li>
+                                <li>Make sure that apacha is allowing .htaccess files to override permissions by changing the line <code>'AllowOverride None'</code> to <code>'AllowOverride All'</code></li>
                             </ul>
                         </div>
 
@@ -522,14 +526,14 @@ sudo nano /etc/apache2/sites-available/default
 sudo service apache2 restart
                         </code></pre>
                     </section>
-                    
+
                     <section>
                         <h3>Adding system accounts to the www-data group</h3>
 
                         <div class="alignleft">
                             <ul>
-                                <li>This allows the users to cd into the /var/www dirs</li>
-                                <li>Add nico to the www-data group</li>
+                                <li>This allows the users to cd into the <code>/var/www</code> dirs</li>
+                                <li>Add <code>nico</code> to the <code>www-data</code> group</li>
                             </ul>
                         </div>
 
@@ -539,15 +543,23 @@ sudo usermod -a -G www-data nico
 
                         <div class="alignleft">
                             <ul>
-                                <li>Display the groups a user is assigned to</li>
+                                <li>Display the groups a user is assigned to using</li>
                             </ul>
                         </div>
-
                         <pre><code data-trim>
 id nico
                         </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Display all available groups using</li>
+                            </ul>
+                        </div>
+                        <pre><code data-trim>
+cat /etc/group
+                        </code></pre>
                     </section>
-                    
+
                     <section>
                         <h3>Setting up MySql</h3>
 
@@ -567,7 +579,7 @@ sudo apt-get install mysql-server mysql-client php5-mysql
                             </ul>
                         </div>
                     </section>
-                    
+
                     <section>
                         <h3>Setting up PhpMyAdmin</h3>
 
@@ -590,7 +602,7 @@ sudo apt-get install phpmyadmin
                                     </ul>
                                 </li>
                                 <li>Select to configure database. If you miss you can restart config using <code>sudo dpkg-reconfigure phpmyadmin</code></li>
-                                <li>You should now be able to access phpmyadmin via http://&lt;server-ip-address/phpmyadmin</li>
+                                <li>You should now be able to access phpmyadmin via <code>http://&lt;server-ip-address/phpmyadmin</code></li>
                             </ul>
                         </div>
                     </section>
@@ -698,7 +710,7 @@ mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = all
                         </code></pre>
-                        
+
                     </section>
 
                     <section>
@@ -713,7 +725,7 @@ inet_interfaces = all
                         <pre><code data-trim>
 telnet localhost 25
                         </code></pre>
-                        
+
                     </section>
 
                     <section>
@@ -728,7 +740,7 @@ telnet localhost 25
                         <pre><code data-trim>
 sudo apt-get install mailutils
                         </code></pre>
-                        
+
                     </section>
 
                     <section>
@@ -743,7 +755,7 @@ sudo apt-get install mailutils
                         <pre><code data-trim>
 echo &quot;MESSAGE&quot; | mail -s &quot;SUBJECT&quot; &lt;email_address&gt;
                         </code></pre>
-                        
+
                     </section>
 
                     <section>
@@ -768,7 +780,7 @@ sudo apt-get install sharutilst
                         <pre><code data-trim>
 uuencode &lt;attachedfile&gt; &lt;attachedfile&gt; | mail -s &quot;My Attachment&quot; -- nico@webtech.be
                         </code></pre>
-                        
+
                     </section>
                 </section>
 			</div>
