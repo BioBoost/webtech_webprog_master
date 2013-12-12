@@ -372,6 +372,89 @@ sudo usermod -L root
                     </section>
 
                     <section>
+                        <h3>Something about ownership</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Each file / directory has an owner and a group</li>
+                                <li>You can see the owner and group of a file using the command <code>ls -al</code></li>
+                                <li>Ownerchip of files can be changed using the <code>chmod</code> command</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <img src="assets/C05/Ownership.png" alt="Ownership of the files in var">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Permissions</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Permissions of a file determine the actions a user can make on a file</li>
+                                <li>File permissions are assigned to
+                                    <ul>
+                                        <li>The owner of the file</li>
+                                        <li>The members of a group the file is assigned to</li>
+                                        <li>All other users</li>
+                                    </ul>
+                                </li>
+                                <li>File permissions can only be changed by the owner and root</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Permissions</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Files:
+                                    <ul>
+                                        <li>r - file is readable</li>
+                                        <li>w - file is writable</li>
+                                        <li>x - file is executable (if executable format)</li>
+                                    </ul>
+                                </li>
+                                <li>Directories:
+                                    <ul>
+                                        <li>r - content of directory can be listed</li>
+                                        <li>w - content of directory can be modified (add / delete files)</li>
+                                        <li>x - directory is traversable</li>
+                                    </ul>
+                                </li>
+                                <li>Watch out. You can delete/move a file if you have write access to dir without write access to file!</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Viewing and changing Permissions</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>File permissions can be viewed using the command <code>ls -al</code></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <img src="assets/C05/Permissions.png" width="800" alt="Permissions of a file">
+                        </div>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>File permissions can be changed using the command <code>chmod</code>
+                                    <ul>
+                                        <li>Octal syntax: <code>chmod 0754 filename</code></li>
+                                        <li>Non-Octal syntax: <code>chmod u+rwx,g-rx,o=r filename</code></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
                         <h3>Configuring SSH to use key-pair authentication</h3>
 
                         <div class="alignleft">
@@ -934,7 +1017,6 @@ git push origin master
                             <img height="300" src="assets/C05/HelloWorld.png" alt="Access to site is working">
                         </div>
                     </section>
-                </section>
 
                     <section>
                         <h3>Check the permissions</h3>
