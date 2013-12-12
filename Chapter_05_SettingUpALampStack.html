@@ -150,7 +150,7 @@ iface eth0 inet static
                             </ul>
                         </div>
                     </section>
-                    
+
                     <section>
                         <h3>Configuring the hostname</h3>
 
@@ -269,6 +269,32 @@ tasksel
                         <div class="alignleft">
                             <ul>
                                 <li>Select OpenSSH server</li>
+                                <li>SSH can be configured by altering <code>/etc/ssh/sshd_config</code>
+                                    <ul>
+                                        <li>You should for example not permit root login from ssh</li>
+                                    </ul>
+                                </li>
+                                <li>Dont forget to restart the SSH service after making changes</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo service ssh restart
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Connecting via SSH</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>You should now be able to connect to your machine using SSH</li>
+                                <li>You can use a utility like putty to connect to the VM
+                                    <ul>
+                                        <li>Connect to the host-only network (192.168.x.x)</li>
+                                        <li>Use port 22</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -300,7 +326,7 @@ useradd -r -m -s /bin/bash nico
 
                         <div class="alignleft">
                             <ul>
-                                <li>Set the password for the accounts (without password user account will be in locked status)</li>
+                                <li>Set the password for the accounts (without a password a user account will be in locked status)</li>
                             </ul>
                         </div>
 
@@ -415,7 +441,7 @@ sudo chown -R nico:nico /home/nico/.ssh
 sudo chmod -R 0700 /home/nico/.ssh
                         </code></pre>
                     </section>
-                </section> 
+                </section>
 
                 <section>
                     <section>
