@@ -50,9 +50,107 @@
 
                 <section>
                     <section>
+                        <h2>The Virtual Machine</h2>
+
+                        <div>
+                            <img height="300" src="assets/C05/VirtualBox.jpg" alt="Virtual Box Logo">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>@Kulab</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Select at least 256MB of RAM</li>
+                                <li>Create two network adapters
+                                    <ul>
+                                        <li>A NAT adapter (accessing the Internet)</li>
+                                        <li>A host only adapter (local access)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <img height="100" src="assets/C05/VB_NetworkAdapters.png" alt="Virtual Box Network adapters for Kulab">
+                        </div>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Install Ubuntu 12.04 - 64bit - Server Edition</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
                         <h2>Basic Server Setup</h2>
                     </section>
 
+                    <section>
+                        <h3>Configuring the network interfaces</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>You can chech the current active and configured network interfaces using the <code>ifconfig command</code></li>
+                                <li>The network interfaces are configured based on the content of the <code>&quot;/etc/network/interfaces&quot;</code> file</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo nano /etc/network/interfaces
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Configuring the network interfaces @ Kulab</h3>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Your network interfaces should be configured for DHCP</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface (NAT)
+auto eth0
+iface eth0 inet dhcp
+
+# The secondary network interface (Host-only)
+auto eth1
+iface eth1 inet dhcp
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Configuring a network interface with a static IP address</h3>
+
+                        <pre><code data-trim>
+# The primary network interface
+auto eth0
+iface eth0 inet static
+    address 10.0.0.1
+    netmask 255.255.255.0
+    network 10.0.0.0
+    broadcast 10.0.0.255
+    gateway 10.0.0.254
+
+                        </code></pre>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Lines beginning with the word &quot;auto&quot; are used to identify the physical interfaces to be brought up when ifup is run with the -a option (this option is used by the system boot scripts)</li>
+                                <li>You can bring interfaces down with <code>ifdown &lt;int&gt;</code> and back up using <code>ifup &lt;int&gt;</code> where &lt;int&gt; is <code>eth0, eth1, ...</code></li>
+                            </ul>
+                        </div>
+                    </section>
+                    
                     <section>
                         <h3>Configuring the hostname</h3>
 
