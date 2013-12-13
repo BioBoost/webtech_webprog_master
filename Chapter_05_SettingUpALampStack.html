@@ -1048,6 +1048,74 @@ ls -al
 
                 <section>
                     <section>
+                        <h2>Multiple Websites using Apache</h2>
+
+                        <div>
+                            <img height="300" src="assets/C05/MultipleWebsites.jpg" alt="Multiple Websites">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Client Host File</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Since we have no DNS entries for our domain names we need to manipulate the host file</li>
+                                <li>The host file can be found in <code>&quot;C:\Windows\System32\drivers\etc&quot;</code></li>
+                                <li>Edit <code>hosts</code> with a text editor running with <strong>administrator</strong> priviledges</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+192.168.56.101  example.com
+192.168.56.101  mynewsite.example.com
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Creating a site</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>Create a site file in <code>/etc/apache2/sites-available</code> and add the following content</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+&lt;VirtualHost *:80&gt;
+    DocumentRoot /var/www/mynewsite
+    ServerName mynewsite.example.com
+
+    &lt;Directory /var/www/mynewsite&gt;
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Order allow,deny
+            allow from all
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Enabling and Disabling sites</h2>
+
+                        <div class="alignleft">
+                            <ul>
+                                <li>You can disable a site using the <code>a2dissite</code> command</li>
+                                <li>You can enable a site using the <code>a2ensite</code> command</li>
+                            </ul>
+                        </div>
+
+                        <pre><code data-trim>
+sudo a2dissite default
+sudo a2ensite mynewsite
+sudo service apache2 reload
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
                         <h2>Firewall rules</h2>
 
                         <div>
